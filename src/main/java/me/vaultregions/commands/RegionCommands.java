@@ -29,7 +29,7 @@ public class RegionCommands implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!(sender instanceof Player player)) {
-            MessageUtils.sendMessage(sender, "<red>Bu komut sadece oyuncular tarafından kullanılabilir.");
+            MessageUtils.sendMessage(sender, "<#FF5C5C>Bu komut sadece oyuncular tarafından kullanılabilir.");
             return true;
         }
 
@@ -40,7 +40,7 @@ public class RegionCommands implements CommandExecutor {
 
             case "vipmadenolustur":
                 if (args.length != 2) {
-                    MessageUtils.sendMessage(player, "<red>Kullanım: /vipmadenolustur <Rol> <ID>");
+                    MessageUtils.sendMessage(player, "<#FF5C5C>Kullanım: /vipmadenolustur <Rol> <ID>");
                     return true;
                 }
                 createRegion(player, args[0], args[1]);
@@ -48,7 +48,7 @@ public class RegionCommands implements CommandExecutor {
 
             case "vipsinirayarla":
                 if (args.length != 2) {
-                    MessageUtils.sendMessage(player, "<red>Kullanım: /vipsinirayarla <Rol> <ID>");
+                    MessageUtils.sendMessage(player, "<#FF5C5C>Kullanım: /vipsinirayarla <Rol> <ID>");
                     return true;
                 }
                 updateRegion(player, args[0], args[1]);
@@ -60,44 +60,44 @@ public class RegionCommands implements CommandExecutor {
     private void giveWand(Player player) {
         ItemStack wand = new ItemStack(Material.GOLDEN_AXE);
         ItemMeta meta = wand.getItemMeta();
-        
-        meta.displayName(MiniMessage.miniMessage().deserialize("<gradient:#ffaa00:#ffff55><bold>VIP Bölge Seçim Baltası</bold></gradient>"));
+
+        meta.displayName(MiniMessage.miniMessage().deserialize("<gradient:#FFE066:#FFFFFF><bold>VIP Bölge Seçim Baltası</bold></gradient>"));
         meta.lore(List.of(
-            MiniMessage.miniMessage().deserialize("<gray>Sol tık <dark_gray>→ <yellow>İlk noktayı belirler."),
-            MiniMessage.miniMessage().deserialize("<gray>Sağ tık <dark_gray>→ <yellow>İkinci noktayı belirler.")
+            MiniMessage.miniMessage().deserialize("<white>Sol tık <dark_gray>→ <#FFE066><bold>İlk noktayı belirler.</bold>"),
+            MiniMessage.miniMessage().deserialize("<white>Sağ tık <dark_gray>→ <#FFE066><bold>İkinci noktayı belirler.</bold>")
         ));
-        
+
         meta.getPersistentDataContainer().set(WAND_KEY, PersistentDataType.BYTE, (byte) 1);
         wand.setItemMeta(meta);
 
         player.getInventory().addItem(wand);
-        MessageUtils.sendMessage(player, "<green>Seçim baltası envanterinize eklendi.");
+        MessageUtils.sendMessage(player, "<#4ADE80>Seçim baltası envanterinize eklendi.");
     }
 
     private void createRegion(Player player, String role, String id) {
         PlayerSelection selection = plugin.getRegionManager().getSelection(player);
         if (!selection.isComplete()) {
-            MessageUtils.sendMessage(player, "<red>Öncelikle baltayla her iki noktayı da seçmelisiniz.");
+            MessageUtils.sendMessage(player, "<#FF5C5C>Öncelikle baltayla her iki noktayı da seçmelisiniz.");
             return;
         }
 
         if (plugin.getRegionManager().hasRegion(id)) {
-            MessageUtils.sendMessage(player, "<red>Bu maden ID'si zaten kullanımda.");
+            MessageUtils.sendMessage(player, "<#FF5C5C>Bu maden ID'si zaten kullanımda.");
             return;
         }
 
         plugin.getRegionManager().addRegion(id, role, selection.getPos1(), selection.getPos2());
-        MessageUtils.sendMessage(player, "<green>Maden bölgesi başarıyla oluşturuldu! <dark_gray>(<yellow>ID: " + id + ", Rol: " + role + "<dark_gray>)");
+        MessageUtils.sendMessage(player, "<#4ADE80>Maden bölgesi başarıyla oluşturuldu! <dark_gray>(<white>ID: <#FFE066><bold>" + id + "</bold><white>, Rol: <#FFE066><bold>" + role + "</bold><dark_gray>)");
     }
 
     private void updateRegion(Player player, String role, String id) {
         PlayerSelection selection = plugin.getRegionManager().getSelection(player);
         if (!selection.isComplete()) {
-            MessageUtils.sendMessage(player, "<red>Öncelikle baltayla her iki noktayı da seçmelisiniz.");
+            MessageUtils.sendMessage(player, "<#FF5C5C>Öncelikle baltayla her iki noktayı da seçmelisiniz.");
             return;
         }
 
         plugin.getRegionManager().updateRegion(id, role, selection.getPos1(), selection.getPos2());
-        MessageUtils.sendMessage(player, "<green>Maden bölgesi sınırları ve yetkisi başarıyla güncellendi! <dark_gray>(<yellow>ID: " + id + ", Rol: " + role + "<dark_gray>)");
+        MessageUtils.sendMessage(player, "<#4ADE80>Maden bölgesi sınırları ve yetkisi başarıyla güncellendi! <dark_gray>(<white>ID: <#FFE066><bold>" + id + "</bold><white>, Rol: <#FFE066><bold>" + role + "</bold><dark_gray>)");
     }
 }
