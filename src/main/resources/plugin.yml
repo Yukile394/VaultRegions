@@ -1,0 +1,27 @@
+name: VaultRegions
+version: '${version}'
+main: me.vaultregions.VaultRegions
+api-version: '1.21'
+authors: [Silvera]
+depend: [LuckPerms]
+
+commands:
+  vipwand:
+    description: VIP bölge seçim baltasını verir.
+    permission: vaultregions.admin
+  vipmadenolustur:
+    description: Yeni bir VIP madeni oluşturur.
+    permission: vaultregions.admin
+    usage: /<command> <Rol> <ID>
+  vipsinirayarla:
+    description: Belirtilen LuckPerms grubuna ait bölgenin sınırlarını günceller.
+    permission: vaultregions.admin
+    usage: /<command> <Rol> <ID>
+
+permissions:
+  vaultregions.admin:
+    description: Admin komutlarına erişim sağlar.
+    default: op
+  vaultregions.bypass:
+    description: Bölge korumalarına takılmadan işlem yapabilmeyi sağlar.
+    default: op
