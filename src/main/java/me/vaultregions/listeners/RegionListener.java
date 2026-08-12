@@ -36,9 +36,9 @@ public class RegionListener implements Listener {
             if (region.contains(loc)) {
                 if (!plugin.getRegionManager().hasPermission(player, region.getRequiredRole())) {
                     event.setCancelled(true);
-                    
+
                     String roleName = region.getRequiredRole().toUpperCase();
-                    MessageUtils.sendMessage(player, "<red>Bu madeni kırabilmek için <gradient:#ff5555:#ffaa00><bold>" + roleName + "</bold></gradient> <red>veya daha üstü bir rütbeye sahip olmalısın.");
+                    MessageUtils.sendMessage(player, "<#FF5C5C>Bu madeni kırabilmek için <gradient:#FFE066:#FFFFFF><bold>" + roleName + "</bold></gradient> <#FF5C5C>veya daha üstü bir rütbeye sahip olmalısın.");
                 }
                 return;
             }
@@ -58,7 +58,7 @@ public class RegionListener implements Listener {
 
         Action action = event.getAction();
         if (action == Action.LEFT_CLICK_BLOCK || action == Action.RIGHT_CLICK_BLOCK) {
-            
+
             event.setCancelled(true);
 
             PlayerSelection selection = plugin.getRegionManager().getSelection(player);
@@ -66,10 +66,10 @@ public class RegionListener implements Listener {
 
             if (action == Action.LEFT_CLICK_BLOCK) {
                 selection.setPos1(loc);
-                MessageUtils.sendMessage(player, "<green>İlk nokta seçildi: <yellow>" + loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ());
+                MessageUtils.sendMessage(player, "<#4ADE80>İlk nokta seçildi: <#FFE066><bold>" + loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ() + "</bold>");
             } else {
                 selection.setPos2(loc);
-                MessageUtils.sendMessage(player, "<green>İkinci nokta seçildi: <yellow>" + loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ());
+                MessageUtils.sendMessage(player, "<#4ADE80>İkinci nokta seçildi: <#FFE066><bold>" + loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ() + "</bold>");
             }
         }
     }
