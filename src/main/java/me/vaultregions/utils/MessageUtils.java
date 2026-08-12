@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 
 public class MessageUtils {
 
-    private static final String PREFIX = "<gold>Silvera</gold> <dark_gray>|</dark_gray> <gray>";
+    private static final String PREFIX = "<gradient:#FFE066:#FFFFFF><bold>Silvera</bold></gradient> <dark_gray>»</dark_gray> <white>";
     private static final MiniMessage MINI_MESSAGE = MiniMessage.miniMessage();
 
     public static void sendMessage(CommandSender sender, String message) {
